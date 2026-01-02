@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rallye Passion — Article</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Rallye Passion</div>
+      <nav class="main-nav">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="actus.html" class="nav-link">Actualités</a>
+        <a href="resultats.html" class="nav-link">Résultats</a>
+        <a href="calendrier.html" class="nav-link">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" class="nav-link" target="_blank">📺 WRC Live</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <a href="actus.html" class="btn outline" style="margin-bottom: 2rem;">← Retour aux actualités</a>
+      
+      <article class="article-detail">
+        <h1 id="article-title" class="article-title"></h1>
+        <p id="article-date" class="article-date"></p>
+        <div id="article-content" class="article-content"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav">
+        <a href="../index.html">Accueil</a>
+        <a href="actus.html">Actualités</a>
+        <a href="resultats.html">Résultats</a>
+        <a href="calendrier.html">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" target="_blank">📺 Regarder WRC</a>
+      </nav>
+      <p class="legal">© Rallye Passion — Mentions légales fictives</p>
+    </div>
+  </footer>
+
+  <script src="../data.js"></script>
+  <script>
+    // Récupérer l'ID de l'article depuis l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = parseInt(urlParams.get('id')) || 1;
+
+    // Trouver l'article dans la base de données
+    const article = newsDatabase.find(a => a.id === articleId);
+
+    if (article) {
+      document.getElementById('article-title').textContent = article.title;
+      document.getElementById('article-date').textContent = article.date;
+      document.getElementById('article-content').textContent = article.content;
+      document.title = `Rallye Passion — ${article.title}`;
+    } else {
+      document.getElementById('article-title').textContent = 'Article non trouvé';
+      document.getElementById('article-content').textContent = 'L\'article que vous recherchez n\'existe pas.';
+    }
+  </script>
+</body>
+</html>

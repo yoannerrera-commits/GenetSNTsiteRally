@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rallye Passion — Résultats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Rallye Passion</div>
+      <nav class="main-nav">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="actus.html" class="nav-link">Actualités</a>
+        <a href="resultats.html" class="nav-link active">Résultats</a>
+        <a href="calendrier.html" class="nav-link">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" class="nav-link" target="_blank">📺 WRC Live</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">Résultats des courses précédentes</h2>
+      <div class="table-wrap">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Date</th>
+              <th>Vainqueur</th>
+              <th>Voiture / Équipe</th>
+              <th>Temps / Points</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+            <!-- Le contenu est rempli dynamiquement via la variable `resultsData` en bas de page -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav">
+        <a href="../index.html">Accueil</a>
+        <a href="actus.html">Actualités</a>
+        <a href="resultats.html">Résultats</a>
+        <a href="calendrier.html">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" target="_blank">📺 Regarder WRC</a>
+      </nav>
+      <p class="legal">© Rallye Passion — Mentions légales fictives</p>
+    </div>
+  </footer>
+
+  <script>
+    // Structure de données JS pour les résultats — modifiable facilement
+    /*
+    const resultsData = [
+      { race: 'Nom', date: 'JJ/MM/AAAA', winner: 'Nom', car: 'Voiture / Équipe', score: 'Temps / Points' }
+    ];
+    */
+    function renderResults(data) {
+      const tbody = document.getElementById('results-body');
+      tbody.innerHTML = '';
+      data.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${r.race}</td><td>${r.date}</td><td>${r.winner}</td><td>${r.car}</td><td>${r.score}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Données par défaut — modifiez ce tableau facilement pour ajouter/mettre à jour des résultats
+    const resultsData = [
+      { race: "Rallye de Monte-Carlo", date: "12/01/2026", winner: "S. Loeb", car: "Peugeot 208", score: "3:45:32" },
+      { race: "Rallye de Suède", date: "20/02/2025", winner: "A. Vatanen", car: "Ford Escort", score: "287 pts" },
+      { race: "Rallye d'Ypres", date: "18/06/2025", winner: "K. Mikkelsen", car: "Hyundai i20", score: "4:02:11" },
+      { race: "Rallye de Finlande", date: "03/08/2025", winner: "O. Tänak", car: "Toyota Yaris", score: "3:31:44" }
+    ];
+
+    // Rendu initial
+    renderResults(resultsData);
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rallye Passion — Calendrier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Rallye Passion</div>
+      <nav class="main-nav">
+        <a href="../index.html" class="nav-link">Accueil</a>
+        <a href="actus.html" class="nav-link">Actualités</a>
+        <a href="resultats.html" class="nav-link">Résultats</a>
+        <a href="calendrier.html" class="nav-link active">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" class="nav-link" target="_blank">📺 WRC Live</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">Calendrier des courses à venir</h2>
+      <p class="muted">Mettez à jour facilement la liste ci-dessous via le tableau JS ou directement dans le HTML.</p>
+
+      <ul id="event-list" class="event-list">
+        <!-- Le contenu peut être généré dynamiquement via la variable `events` ci-dessous -->
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="footer-nav">
+        <a href="../index.html">Accueil</a>
+        <a href="actus.html">Actualités</a>
+        <a href="resultats.html">Résultats</a>
+        <a href="calendrier.html">Calendrier</a>
+        <a href="https://auvio.rtbf.be/emission/wrc-9376" target="_blank">📺 Regarder WRC</a>
+      </nav>
+      <p class="legal">© Rallye Passion — Mentions légales fictives</p>
+    </div>
+  </footer>
+
+  <script>
+    // Structure de données pour le calendrier — modifiez ce tableau pour ajouter des courses
+    const events = [
+      { date: '12 Jan 2026', name: 'Rallye de Monte-Carlo', place: 'Monaco', championship: 'WRC' },
+      { date: '20 Feb 2026', name: 'Rallye de Suède', place: 'Suède', championship: 'WRC' },
+      { date: '12 Mar 2026', name: 'Rallye de Croatie', place: 'Croatie', championship: 'WRC' },
+      { date: '18 Apr 2026', name: 'Rallye de Grèce', place: 'Grèce', championship: 'WRC' },
+      { date: '16 May 2026', name: 'Rallye du Portugal', place: 'Portugal', championship: 'WRC' },
+      { date: '18 Jun 2026', name: "Rallye d'Ypres", place: 'Belgique', championship: 'Europe' },
+      { date: '03 Aug 2026', name: 'Rallye de Finlande', place: 'Finlande', championship: 'WRC' },
+      { date: '22 Sep 2026', name: 'Rallye de Catalogne', place: 'Espagne', championship: 'WRC' }
+    ];
+
+    function renderCalendar(items) {
+      const list = document.getElementById('event-list');
+      list.innerHTML = '';
+      items.forEach(it => {
+        const li = document.createElement('li');
+        li.className = 'event-item';
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'event-date';
+        dateDiv.textContent = it.date;
+        if (new Date().toDateString() === new Date(it.date).toDateString()) dateDiv.classList.add('highlight');
+        const meta = document.createElement('div');
+        meta.className = 'event-meta';
+        meta.innerHTML = `<h3 class="event-title">${it.name}</h3><p class="muted">Lieu : ${it.place} — Championnat : ${it.championship}</p>`;
+        li.appendChild(dateDiv);
+        li.appendChild(meta);
+        list.appendChild(li);
+      });
+    }
+
+    // Rendu initial
+    renderCalendar(events);
+  </script>
+</body>
+</html>
